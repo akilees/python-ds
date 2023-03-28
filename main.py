@@ -116,6 +116,19 @@ class NotGate(UnaryGate):
             return 1
 
 
+class NorGate(AndGate):
+
+    def __init__(self, n):
+        AndGate.__init__(self, n)
+
+    def performGateLogic(self):
+
+        g0 = NotGate('G0')
+        c0 = Connector(self, g0)
+        ## ????????
+        return g0.getOutput()
+
+
 class Connector:
 
     def __init__(self, fgate, tgate):
@@ -137,23 +150,15 @@ class Connector:
 
 
 if __name__ == '__main__':
-    # test_gate = AndGate("test and gate")
-    # test_gate.getLabel()
-    # print(test_gate.getOutput())
-    #
-    # g2 = OrGate("G2")
-    # print(g2.getLabel())
-    # print(g2.getOutput())
-    #
-    # g3 = NotGate("N3")
-    # print(g3.getLabel())
-    # print(g3.getOutput())
 
-    g1 = AndGate("G1")
-    g2 = AndGate("G2")
-    g3 = OrGate("G3")
-    g4 = NotGate("G4")
-    c1 = Connector(g1, g3)
-    c2 = Connector(g2, g3)
-    c3 = Connector(g3, g4)
-    print(g4.getOutput())
+    # g1 = AndGate("G1")
+    # g2 = AndGate("G2")
+    # g3 = OrGate("G3")
+    # g4 = NotGate("G4")
+    # c1 = Connector(g1, g3)
+    # c2 = Connector(g2, g3)
+    # c3 = Connector(g3, g4)
+    # print(g4.getOutput())
+
+    g5 = NorGate("G5")
+    print(g5.getOutput())
